@@ -1,6 +1,4 @@
 # # task 1
-import math
-from operator import index
 
 
 # class Student:
@@ -72,18 +70,21 @@ from operator import index
 
 # # task 5
 class Car:
-    def __init__(self, brand, year, is_ready = False):
+    def __init__(self, brand, year, is_ready=False):
         self.brand = brand
         self.year = year
         self.is_ready = is_ready
+
     def start_engine(self):
         self.is_ready = True
         print("The car just started")
+
     def move(self):
         if self.is_ready:
             print(f"{self.brand} made in {self.year} is Moving ")
         else:
             print(f"{self.brand} made in {self.year} is not Moving ")
+
 
 car1 = Car("Bentley", 2021)
 car1.move()

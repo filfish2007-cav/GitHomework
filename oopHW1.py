@@ -41,7 +41,8 @@
 #
 #     def lower_charge(self, percent):
 #         if self.battery_level < percent:
-#             print("Battery level too low cant lower it anymore: ", self.battery_level,"%")
+#             print("Battery level too low cant lower it anymore: ",
+#                 self.battery_level,"%")
 #             self.battery_level = 0
 #             return
 #
@@ -76,6 +77,3 @@
 # phone1.lower_charge(85)
 # phone1.charge(100)
 # phone1.display_info()
-
-
-

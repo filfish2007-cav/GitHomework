@@ -1,6 +1,5 @@
-# # task 1:
-import random
 from typing import Optional
+# # task 1:
 
 
 # class Project:
@@ -291,4 +290,3 @@ from typing import Optional
 #                 print(f" Average grade for {subject}: {round(avg,1)}")
 
 # # task 5
-

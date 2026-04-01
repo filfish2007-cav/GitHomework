@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional,Dict
 # # task 1:
 
 
@@ -290,3 +290,52 @@ from typing import Optional
 #                 print(f" Average grade for {subject}: {round(avg,1)}")
 
 # # task 5
+
+class Shop:
+    def __init__(self, name: str,
+                    products: Dict[str,int],
+                    prices: Dict[str,int]):
+        self.name = name
+        self.revenue = 0
+        self.products = products
+        self.prices = prices
+        self.expences = 0
+
+    def show_info(self):
+        print(f"\n--- Our shop {self.name} has these products ---")
+
+        for name, quantity in self.products.items():
+            price = self.prices.get(name, 0)
+            print(f" * {name}: {quantity} in stock for {price}$ each")
+
+    def fin_status(self):
+        net_income = self.revenue - self.expences
+
+        print(f"{self.name} shop's revenue is {self.revenue} $. "
+                f"shop's expences are {self.expences} $. "
+                f"shop's net income is {net_income} $.")
+
+
+    def buy_supplies(self,name: str,set_price: int,quantity: int,cost_unit: int):
+        if name not in self.products:
+            self.products[name] = quantity
+            self.prices[name] = set_price
+            self.expences += cost_unit * quantity
+            return
+
+        self.products[name] += quantity
+        self.expences += cost_unit * quantity
+
+    def order(self,name: str,quantity: int,income_per_unit: int):
+        if name not in self.products:
+            print(f"{name} is not available at our store")
+            return
+        if quantity > self.products[name]:
+            print(f"we don't have enough {name} to sell {quantity} units")
+            return
+
+        self.products[name] -= quantity
+        self.revenue += quantity * income_per_unit
+
+
+

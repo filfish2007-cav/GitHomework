@@ -1,4 +1,5 @@
 # # task 1:
+import random
 
 # class Project:
 #     def __init__(self, name: str, budget: int) -> None:
@@ -201,3 +202,44 @@ class Phone:
         print(f"Memory freed (all deletes): {self.deletes_log}")
         print(f"Memory consumed for apps: {self.downloads_log}")
         print(f"Memory used left in total: {self.used_memory}")
+
+
+# # task 3
+
+
+class Car:
+    def __init__(
+        self, brand: str, mileage: float, gas_level: float, litres_per_km: float
+    ):
+        self.brand = brand
+        self.mileage = mileage
+        self.gas_level = gas_level
+        self.gas_consumed = 0
+        self.litres_per_km = litres_per_km
+        self.if_okay = True
+
+    def drive(self, miles: float):
+        if not self.if_okay:
+            print("Your car is broken")
+            return
+
+        if miles * self.litres_per_km > self.gas_level:
+            print("Not enough gas to drive")
+            return
+
+        if random.random() < 0.4:
+            self.if_okay = False
+            print("Your car has broken u cant drive")
+            return
+
+        self.mileage += miles
+        self.gas_level -= miles * self.litres_per_km
+
+    def fix_car(self):
+        if not self.if_okay:
+            self.if_okay = True
+        print("Your car is fixed now")
+
+    def gas_station(self, litres: float):
+        self.gas_level += litres
+        print(f"You fueled up {litres} litres")

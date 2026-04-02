@@ -144,3 +144,68 @@
 # except ValueError as e:
 #     print(f"Помилка: {e}")
 
+# # task 3
+class Car:
+    def __init__(self, speed: int):
+        self.speed = speed
+        self._check_speed()
+
+    def move(self):
+        print(f"Car moving with {self.speed} km/h")
+
+    def _check_speed(self):
+        if self.speed < 20 or self.speed > 200:
+            raise ValueError("Car must be moving with the speed ranging from 20 to 200 km/h")
+
+class Bicycle:
+    def __init__(self, speed: int):
+        self.speed = speed
+        self._check_speed()
+
+
+    def move(self):
+        print(f"Bicycle moving with {self.speed} km/h")
+
+    def _check_speed(self):
+        if self.speed < 10 or self.speed > 30:
+            raise ValueError("Bicycle must be moving with the speed ranging from 10 to 30 km/h")
+
+class Boat:
+    def __init__(self, speed: int):
+        self.speed = speed
+        self._check_speed()
+
+    def move(self):
+        print(f"Boat moving with {self.speed} km/h")
+
+    def _check_speed(self):
+        if self.speed < 0 or self.speed > 50:
+            raise ValueError("Boat must be moving with the speed ranging from 10 to 30 km/h")
+
+def create_vehicle() -> Car | Bicycle | Boat | None:
+    vehicle_type = str(input("Vehicle type: ")).strip().lower()
+    speed = int(input("Vehicle speed: "))
+
+    if vehicle_type == "car":
+        return Car(speed)
+
+    elif vehicle_type == "bicycle":
+        return Bicycle(speed)
+
+    elif vehicle_type == "boat":
+        return Boat(speed)
+
+vehicles = []
+for _ in range(3):
+    veh = create_vehicle()
+    if veh is not None:
+        vehicles.append(veh)
+
+for vehicle in vehicles:
+    vehicle.move()
+
+
+print(vehicles)
+
+
+

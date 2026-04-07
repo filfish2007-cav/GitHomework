@@ -36,11 +36,12 @@ def create_payment():
     else:
         raise ValueError("Невідомий тип оплати!")
 
+
 payments_list = []
 
 try:
     for i in range(3):
-        print(f"\nНалаштування платежу №{i+1}:")
+        print(f"\nНалаштування платежу №{i + 1}:")
         payment_obj = create_payment()
         payments_list.append(payment_obj)
 

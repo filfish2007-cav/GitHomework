@@ -1,4 +1,3 @@
-from typing import List
 # # task 1
 # import datetime
 #
@@ -76,8 +75,9 @@ from typing import List
 
 # # task 3
 
+
 class Cart:
-    def __init__(self, items: List[str], total: int):
+    def __init__(self, items: list[str], total: int):
         self.items = items
         self.total = total
 
@@ -93,8 +93,9 @@ class Cart:
     def __iter__(self):
         return iter(self.items)
 
-cart1 = Cart(["Milk","Butter","Bread"],600)
-cart2 = Cart(["Oil","Carrots","Potato","Matches"],400)
+
+cart1 = Cart(["Milk", "Butter", "Bread"], 600)
+cart2 = Cart(["Oil", "Carrots", "Potato", "Matches"], 400)
 
 print(cart1)
 print(cart2)
@@ -102,7 +103,7 @@ print(cart2)
 print(len(cart1))
 print(len(cart2))
 
-cart3 = cart1+cart2
+cart3 = cart1 + cart2
 
 print(cart3)
 

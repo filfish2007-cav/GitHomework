@@ -1,8 +1,17 @@
 from abc import ABC, abstractmethod
 
+
 class Character(ABC):
-    def __init__(self, name: str, max_hp: int, intelligence: int, strength: int,
-                dexterity: int, mana: int, defense: int):
+    def __init__(
+        self,
+        name: str,
+        max_hp: int,
+        intelligence: int,
+        strength: int,
+        dexterity: int,
+        mana: int,
+        defense: int,
+    ):
         self._name = name
         self._max_hp = max_hp
         self._hp = max_hp
@@ -41,10 +50,11 @@ class Character(ABC):
     def rest(self):
         self._hp = self._max_hp
 
-    def heal(self,heal_hp: int):
+    def heal(self, heal_hp: int):
         self._hp += heal_hp
         if self._hp > self._max_hp:
             self._hp = self._max_hp
+
 
 class Paladin(Character):
     def attack(self):
@@ -60,11 +70,12 @@ class Paladin(Character):
     def unshield(self):
         self._defense -= 4 - self._level
 
-    def heal_ally(self,ally: Character):
-        heal_hp = 5 + 2*self._level + 0.5 * self._mana
+    def heal_ally(self, ally: Character):
+        heal_hp = 5 + 2 * self._level + 0.5 * self._mana
         ally._hp += heal_hp
         if ally._hp > self._max_hp:
             ally._hp = self._max_hp
+
 
 class Mage(Character):
     def attack(self):
@@ -81,14 +92,8 @@ class Mage(Character):
 
         return 0
 
-    def heal_ally(self,ally: Character):
+    def heal_ally(self, ally: Character):
         heal_hp = 3 + self._level + 3 * self._intelligence
         ally._hp += heal_hp
         if ally._hp > self._max_hp:
             ally._hp = self._max_hp
-
-
-
-
-
-

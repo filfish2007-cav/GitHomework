@@ -1,17 +1,18 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+
 class Sounds(Enum):
     gav = "гав"
     myav = "мяу"
 
+
 class SatietyParamError(Exception):
     pass
 
+
 class EnergyParamError(Exception):
     pass
-
-
 
 
 class Pet(ABC):
@@ -42,11 +43,12 @@ class Pet(ABC):
         pass
 
     @staticmethod
-    def _check_stats(en,sat):
+    def _check_stats(en, sat):
         if en < 0 or en > 100:
             raise EnergyParamError("energy should be between 0 and 100")
         if sat < 0 or sat > 100:
             raise SatietyParamError("satiety should be between 0 and 100")
+
 
 class Cat(Pet):
     def play(self, activity_level: int):
@@ -55,26 +57,31 @@ class Cat(Pet):
             self._satiety -= activity_level
             super().play(activity_level)
 
-            return (f"Your Cat {self._name} was running a lot so his energy now {self._energy} "
-                    f" and his satiety is at {self._satiety}")
+            return (
+                f"Your Cat {self._name} was running a lot so his energy now {self._energy} "
+                f" and his satiety is at {self._satiety}"
+            )
 
-        return (f"Your Cat {self._name} is too"
-                f" hungry to play: {self._satiety} - (60 required)")
+        return (
+            f"Your Cat {self._name} is too"
+            f" hungry to play: {self._satiety} - (60 required)"
+        )
 
     def make_sound(self):
         return Sounds.myav.value
 
     def catch_mouse(self):
         if self._energy > 30 and self._satiety > 40:
-            return (f"Your Cat {self._name} has just caught a mouse"
-                    f" and playing with it")
+            return f"Your Cat {self._name} has just caught a mouse and playing with it"
 
         elif self._energy > 30:
-            return (f"Your Cat {self._name} has just caught a mouse"
-                    f" and ate it")
+            return f"Your Cat {self._name} has just caught a mouse and ate it"
 
-        return (f"Your Cat {self._name} is too "
-                f" tired to catch a mouse: {self._energy} - (30 required)")
+        return (
+            f"Your Cat {self._name} is too "
+            f" tired to catch a mouse: {self._energy} - (30 required)"
+        )
+
 
 class Dog(Pet):
     def play(self, activity_level: int):
@@ -83,11 +90,15 @@ class Dog(Pet):
             self._satiety -= activity_level // 2
             super().play(activity_level)
 
-            return (f"Your Dog {self._name} was running a lot so his energy now {self._energy} "
-                    f" and his satiety is at {self._satiety}")
+            return (
+                f"Your Dog {self._name} was running a lot so his energy now {self._energy} "
+                f" and his satiety is at {self._satiety}"
+            )
 
-        return (f"Your Dog {self._name} is too"
-                f" hungry to play: {self._satiety} - (15 required)")
+        return (
+            f"Your Dog {self._name} is too"
+            f" hungry to play: {self._satiety} - (15 required)"
+        )
 
     def make_sound(self):
         return Sounds.gav.value
@@ -96,10 +107,13 @@ class Dog(Pet):
         if self._satiety > 10:
             self._energy -= 5
             super().play(0)
-            return (f"Your Dog {self._name} has just caught a ball"
-                    f" his energy now {self._energy} ")
+            return (
+                f"Your Dog {self._name} has just caught a ball"
+                f" his energy now {self._energy} "
+            )
 
         return f"Your Dog {self._name} is too hungry to catch a ball"
+
 
 try:
     barsik = Dog("Barsik")
@@ -123,15 +137,3 @@ print(asik.make_sound())
 print(asik.sleep())
 print(asik.play(201))
 print(asik.play(202))
-
-
-
-
-
-
-
-
-
-
-
-

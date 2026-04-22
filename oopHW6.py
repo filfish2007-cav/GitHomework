@@ -115,25 +115,27 @@ class Dog(Pet):
         return f"Your Dog {self._name} is too hungry to catch a ball"
 
 
-try:
-    barsik = Dog("Barsik")
-    asik = Cat("Asik")
-except SatietyParamError:
-    print("Satiety param error")
-except EnergyParamError:
-    print("Energy param error")
-
-
-print(barsik.eat(5))
-print(barsik.fetch_ball())
-print(barsik.make_sound())
-print(barsik.sleep())
-print(barsik.play(201))
-print(barsik.play(202))
-
-print(asik.eat(5))
-print(asik.catch_mouse())
-print(asik.make_sound())
-print(asik.sleep())
-print(asik.play(201))
-print(asik.play(202))
+# try:
+#     barsik = Dog("Barsik")
+#     asik = Cat("Asik")
+# except SatietyParamError:
+#     print("Satiety param error")
+# except EnergyParamError:
+#     print("Energy param error")
+#
+#
+# print(barsik.eat(5))
+# print(barsik.fetch_ball())
+# print(barsik.make_sound())
+# print(barsik.sleep())
+# print(barsik.play(201))
+# print(barsik.play(202))
+#
+# print(asik.eat(5))
+# print(asik.catch_mouse())
+# print(asik.make_sound())
+# print(asik.sleep())
+# print(asik.play(201))
+# print(asik.play(202))
+a = tuple({1, 3, 4, 5})
+a.difference

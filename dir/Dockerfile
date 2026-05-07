@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 #run this file
-CMD ["python3","server_hw.py"]
+CMD ["python3","api_run.py"]

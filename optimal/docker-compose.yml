@@ -1,0 +1,45 @@
+# description of containers
+services:
+  # service 1
+  rand-num1:
+    # how to creaate obraz
+    image: rand-num
+    build: . # path for dockerfile
+
+    # settings
+    environment:
+      START_RANGE: 10
+      END_RANGE: 20
+
+    # read env file
+    env_file:
+      - .env
+
+  # service 2
+  rand-num2:
+    # how to create obraz
+    image: rand-num
+    build: . # path for dockerfile
+
+    # settings
+    environment:
+      START_RANGE: -100
+      END_RANGE: -50
+
+    # read env file
+    env_file:
+      - .env
+
+  rand-num3:
+    # how to create obraz
+    image: rand-num
+    build: . # path for dockerfile
+
+    # settings
+    environment:
+      START_RANGE: 1000
+      END_RANGE: 2000
+
+    # read env file
+    env_file:
+      - .env

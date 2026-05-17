@@ -1,0 +1,11 @@
+services:
+  aplikuha:
+    image: films1
+    build: .
+
+    environment:
+      MAX_FILMS: 10
+
+    ports:
+      # port outside : port inside
+      - 8081:8080

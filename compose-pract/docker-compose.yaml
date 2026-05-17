@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+    app1:
+      build: .
+      image: rand-line
+      environment:
+        SYMBOL: "@"
+        MIN_LEN: 1
+        MAX_LEN: 10
+        DELAY: 1
+    app2:
+      build: .
+      image: rand-line
+      environment:
+        SYMBOL: "%"
+        MIN_LEN: 5
+        MAX_LEN: 14
+        DELAY: 3
+
+    app3:
+      build: .
+      image: rand-line
+      environment:
+        SYMBOL: "."
+        MIN_LEN: 9
+        MAX_LEN: 12
+        DELAY: 5

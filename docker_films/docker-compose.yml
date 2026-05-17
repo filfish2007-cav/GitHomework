@@ -1,10 +1,13 @@
+version: "3.9"
+
 services:
   aplikuha:
     image: films1
     build: .
 
     environment:
-      MAX_FILMS: 10
+      MAX_FILMS: 5
+      DATA_FILE_PATH: "./films.json"
 
     ports:
       # port outside : port inside

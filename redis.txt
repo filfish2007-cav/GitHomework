@@ -1,0 +1,87 @@
+127.0.0.1:6379> sadd players john joe robert marry
+(integer) 4
+127.0.0.1:6379> hset data name Mary
+(integer) 1
+127.0.0.1:6379> hser data age 55
+(error) ERR unknown command 'hser', with args beginning with: 'data' 'age' '55'
+127.0.0.1:6379> hset data age 55
+(integer) 1
+127.0.0.1:6379> set name john dih
+(error) ERR syntax error
+127.0.0.1:6379> set name "john doe"
+OK
+127.0.0.1:6379> get name
+"john doe"
+127.0.0.1:6379> rpush fruits aplle
+(integer) 1
+127.0.0.1:6379> rpush fruits banana
+(integer) 2
+127.0.0.1:6379> rpush fruits orange
+(integer) 3
+127.0.0.1:6379> lrange fruits
+(error) ERR wrong number of arguments for 'lrange' command
+127.0.0.1:6379> lrange fruits 0 -1
+1) "aplle"
+2) "banana"
+3) "orange"
+127.0.0.1:6379> hmset user1: name alice
+OK
+127.0.0.1:6379> hmset user1: age 18
+OK
+127.0.0.1:6379> hgetall user1
+(empty array)
+127.0.0.1:6379> sadd tegs "red" "green" "blue"
+(integer) 3
+127.0.0.1:6379> incr counter 1
+(error) ERR wrong number of arguments for 'incr' command
+127.0.0.1:6379> incr counter
+(integer) 1
+127.0.0.1:6379> del user1: name
+(integer) 2
+127.0.0.1:6379> get user1
+(nil)
+127.0.0.1:6379> exists age
+(integer) 1
+127.0.0.1:6379> exists counter
+(integer) 1
+127.0.0.1:6379> setex message 10 "hello rediska"
+OK
+127.0.0.1:6379> get message
+"hello rediska"
+127.0.0.1:6379> get message
+(nil)
+127.0.0.1:6379> keys 0
+(empty array)
+127.0.0.1:6379> keys *
+1) "nums"
+2) "tegs"
+3) "data"
+4) "fruits"
+5) "age"
+6) "counter"
+7) "players"
+127.0.0.1:6379> flushhall
+(error) ERR unknown command 'flushhall'
+127.0.0.1:6379> FLUSHALL
+OK
+127.0.0.1:6379> geoadd geo_location 46.38 30.43 Odesa
+(integer) 1
+127.0.0.1:6379> geoadd geo_location 50.45 30.52 Kyiv
+(integer) 1
+127.0.0.1:6379> geodist geo_location Odesa Kyiv km
+"390.2592"
+127.0.0.1:6379> set Students: filip 18
+(error) ERR syntax error
+127.0.0.1:6379> set Students:filip 1
+OK
+127.0.0.1:6379> set Students:viktor 38
+OK
+127.0.0.1:6379> set Students:john 50 3
+(error) ERR syntax error
+127.0.0.1:6379> set Students:john 50
+OK
+127.0.0.1:6379> set Students: jamal 60
+(error) ERR syntax error
+127.0.0.1:6379> set Stusents:jamal 60
+OK
+127.0.0.1:6379>

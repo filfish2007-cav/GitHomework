@@ -4,12 +4,6 @@ import dotenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
-# host = "localhost"
-# port = 5432
-# password = "Aboba4.0"
-# user = "postgres"
-# db = "hospital"
-
 # reads .env
 dotenv.load_dotenv()
 
@@ -41,76 +35,59 @@ session = Session()
 # print(list(tables.keys()))
 
 
-def show_doctor_specializations(session):
+def show_groups_in_faculties(session):
+    """
+    Нова функція з JOIN.
+    Виводить назви груп та назви факультетів, до яких вони належать.
+    """
     query = """
-        SELECT D.NAME, S.NAME
-        FROM DOCTORS D
-                JOIN DOCTORSSPECIALIZATIONS DS ON D.id = DS.doctor_id
-				JOIN SPECIALIZATIONS S ON S.id = DS.specialization_id
-
-    """
+            SELECT g.name AS group_name, f.name AS faculty_name
+            FROM groups g
+                     JOIN departments d ON g.department_id = d.id
+                     JOIN faculties f ON d.faculty_id = f.id \
+            """
 
     query = text(query)
-
     result = session.execute(query)
 
     for row in result:
         print(row)
 
 
-def show_active_doctors_salary(session):
+def show_high_salary_teachers(session):
+    """
+    Нова функція з користувацьким введенням (аналог show_month_donations).
+    Шукає викладачів, чия ставка перевищує введене користувачем значення.
+    """
+    min_salary = input("Введіть мінімальну ставку для пошуку: ")
+
+    # Використовуємо іменовані параметри (:min_sal) для захисту від SQL-ін'єкцій
     query = """
-        SELECT D.SURNAME, D.SALARY + D.PREMIUM
-        FROM DOCTORS D
-                JOIN VACATIONS V ON D.id = V.doctorid
-        WHERE V.STARTDATE < '2025-06-04' AND V.ENDDATE > '2025-06-04'
-
-    """
+            SELECT name, surname, salary
+            FROM teachers
+            WHERE salary > :min_sal \
+            """
 
     query = text(query)
-
-    result = session.execute(query)
+    result = session.execute(query, {"min_sal": float(min_salary)})
 
     for row in result:
         print(row)
 
 
-def show_wards_in_department(session):
+def show_top_financed_faculties(session):
+    """
+    Нова проста функція.
+    Виводить факультети з фондом фінансування понад 80,000.
+    """
     query = """
-        SELECT W.NAME, DP.NAME
-        FROM WARDS W JOIN DEPARTMENTS DP ON W.departmentid = DP.id
-        WHERE DP.NAME = 'Кардіологічне відділення'
-
-    """
+            SELECT name, financing
+            FROM faculties
+            WHERE financing > 80000 \
+            """
 
     query = text(query)
-
     result = session.execute(query)
 
     for row in result:
         print(row)
-
-
-def show_month_donations(session):
-    month_number = input("uinput a month ")
-    year_number = input("uinput a year ")
-
-    query = f"""
-        SELECT DP.NAME,S.NAME,DN.AMOUNT,DN.DONATION_DATE
-        FROM SPONSORS S
-            JOIN DONATIONS DN ON S.id = DN.sponsor_id
-            JOIN DEPARTMENTS DP ON DP.id = DN.department_id
-        WHERE EXTRACT(MONTH FROM DN.DONATION_DATE) = '{month_number}'
-            AND EXTRACT(YEAR FROM DN.DONATION_DATE) = '{year_number}'
-
-    """
-
-    query = text(query)
-
-    result = session.execute(query)
-
-    for row in result:
-        print(row)
-
-
-show_month_donations(session)
